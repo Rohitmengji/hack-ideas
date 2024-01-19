@@ -6,16 +6,11 @@ It manages and tracks challenges, providing endpoints for retrieving, adding, vo
 
 ## Getting Started
 1. Install dependencies:
-2. 
-```bash
 npm install
-```
 
 2. Start the server:
-
-```bash
 nodemon index.js
-```
+
 The API will be accessible at `http://localhost:5000`.
 
 ## API Endpoints
