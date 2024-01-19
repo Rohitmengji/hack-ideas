@@ -1,18 +1,20 @@
 // src/App.js
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./components/Logins";
 import Challenge from "./components/Challenge";
 import { fetchChallenges } from "./services/api";
+import { useUserChallengeContext } from "./context/UserContext";
 
 function App() {
-  const [empId, setEmpId] = useState("");
-  const [challenges, setChallenges] = useState([]);
-  const [newChallenge, setNewChallenge] = useState({
-    title: "",
-    description: "",
-    tags: "",
-  });
+  const {
+    empId,
+    setEmpId,
+    challenges,
+    setChallenges,
+    newChallenge,
+    setNewChallenge,
+  } = useUserChallengeContext();
 
   useEffect(() => {
     const storedEmpId = localStorage.getItem("empId");
@@ -22,7 +24,7 @@ function App() {
         .then((response) => setChallenges(response.data))
         .catch((error) => console.error("Error fetching challenges:", error));
     }
-  }, []);
+  }, [setEmpId]);
 
   const handleLogin = () => {
     if (!empId.trim()) {
@@ -56,7 +58,7 @@ function App() {
         </Route>
         <Route path="/">
           {/* Redirect to "/login" if no matching route */}
-          <Login empId={empId} setEmpId={setEmpId} handleLogin={handleLogin} />
+          <Login  handleLogin={handleLogin} />
         </Route>
       </Switch>
     </Router>

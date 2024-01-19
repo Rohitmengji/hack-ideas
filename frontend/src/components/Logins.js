@@ -1,7 +1,10 @@
 // src/Login.js
 import React from "react";
+import { useUserChallengeContext } from "../context/UserContext";
 
-const Login = ({ empId, setEmpId, handleLogin }) => {
+const Login = ({ handleLogin }) => {
+  const { empId, setEmpId } = useUserChallengeContext();
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleLogin();
