@@ -15,6 +15,7 @@ const challengesRef = db.ref("challenges");
 router.get("/:emp_id", async (req, res) => {
   try {
     const empId = req.params.emp_id;
+
     const snapshot = await challengesRef
       .orderByChild("emp_id")
       .equalTo(Number(empId))
@@ -27,6 +28,7 @@ router.get("/:emp_id", async (req, res) => {
       });
 
       res.json(tasks);
+      
     } else {
       res
         .status(404)
